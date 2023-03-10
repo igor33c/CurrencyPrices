@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 function Currency() {
   const [rates, setRates] = useState(null);
 
@@ -22,10 +23,10 @@ function Currency() {
 
   return (
     <div>
-      <h1>Currency Rates</h1>
-      <p>USD: {dolRate}</p>
-      <p>EUR: {eurRate}</p>
-      <p>BTC: {btcRate}</p>
+      <h1 className="text-red-600">Cotações Moedas</h1>
+      <p>Dólar: {dolRate}</p>
+      <p>Euro: {eurRate}</p>
+      <p>Bitcoin: {btcRate}</p>
     </div>
   );
 }
