@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 function CurrencyRatesAPI() {
-  const [rates, setRates] = useState(null);
+  const [rates, setRates] = useState(null)
 
   useEffect(() => {
     async function fetchRates() {
-      const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL');
-      const data = await response.json();
-      setRates(data);
+      const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL')
+      const data = await response.json()
+      setRates(data)
     }
-    fetchRates();
-  }, [ ]);
-
-  return rates;
+    fetchRates()
+    }, [])
+  return rates
 }
 
-export default CurrencyRatesAPI;
+export default CurrencyRatesAPI
