@@ -1,4 +1,4 @@
-import Currency from './api/Currency'
+import Currency from './Components/Currency'
 import './styles/global.css'
 
 function App() {

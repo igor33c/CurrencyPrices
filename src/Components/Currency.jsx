@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import CurrencyRatesAPI from './CurrencyRatesAPI'
+import CurrencyRatesAPI from '../api/CurrencyRatesAPI'
 import Display from './DisplayCurrency'
 
 function Currency(props) {
@@ -95,7 +95,4 @@ function Currency(props) {
     </div>
   )
 }
-
-
-
 export default Currency
