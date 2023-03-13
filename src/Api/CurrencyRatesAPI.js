@@ -5,12 +5,13 @@ function CurrencyRatesAPI() {
 
   useEffect(() => {
     async function fetchRates() {
-      const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL')
+      const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL,ETH-BRL')
       const data = await response.json()
       setRates(data)
     }
     fetchRates()
     }, [])
+    
   return rates
 }
 
