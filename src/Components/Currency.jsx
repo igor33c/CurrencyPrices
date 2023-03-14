@@ -76,9 +76,7 @@ function Currency(props) {
   console.log('o menor preço do ethereum hoje foi: R$', lowEthRate)
   
   return (
-    <div className="flex flex-col items-center">   
-      <h1 className="text-red-500 font-bold text-3xl mt-2 mb-5">Cotações Moedas</h1>
-      <Display
+    <Display
         dolRate = {dolRate}
         unitDol = {unitDol}
         changingDol = {changingDol}
@@ -92,7 +90,7 @@ function Currency(props) {
         changingBtc = {changingBtc}
         changingBrlToBtc = {changingBrlToBtc}
       />      
-    </div>
+    
   )
 }
 export default Currency
