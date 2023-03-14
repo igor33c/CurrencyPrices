@@ -5,7 +5,7 @@ import realIcon from '../icons/brazil.png'
 
 function Display(props){
     return (
-        <div className="flex flex-col items-center">   
+        <div className="px-1 flex flex-col items-center">   
             <h1 className="text-red-200 font-bold text-3xl mt-2 mb-5">Cotações Moedas</h1>
             <ul className="max-w-md space-y-1 list-disc pb-10">
                 <li className="flex items-center justify-between flex-wrap">
