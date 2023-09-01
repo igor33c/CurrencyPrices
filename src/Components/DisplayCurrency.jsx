@@ -19,7 +19,7 @@ function Display(props){
                             <input
                                 type="number"
                                 inputMode="numeric"
-                                value={props.formattedDol}
+                                value={props.unitDol.toFixed(2)}
                                 step="0.1"
                                 className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                                 id="exchanger"
