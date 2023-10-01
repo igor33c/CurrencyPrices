@@ -5,7 +5,25 @@ import realIcon from '../icons/brazil.png'
 import ethereumIcon from '../icons/ethereum.png'
 import canadaIcon from '../icons/canada.png'
 
+
 function Display(props){
+    const roundedUnitDol = Math.round(props.unitDol * 100) / 100
+    const roundedUnitEur = Math.round(props.unitEur * 100) / 100
+    //const roundedBrlToDol = Math.round(props.dolPrice * 100) / 100
+    let roundedBrlToDol
+    let roundedBrltoEur
+
+    if (typeof props.dolPrice === 'number') {
+        roundedBrlToDol = Math.round(props.dolPrice * 100) / 100
+    } else {
+        roundedBrlToDol = Math.round(props.dolRate * 100) / 100
+    }
+    console.log('this is a teste', props.eurPrice)
+    if (typeof props.eurPrice === 'number') {
+        roundedBrltoEur = Math.round(props.eurPrice * 100) / 100
+    } else {
+        roundedBrltoEur = Math.round(props.eurRate * 100) / 100
+    } 
     return (
         <div className="pl-1 flex flex-col items-center">   
             <h1 className="text-red-200 font-bold text-3xl mt-2 mb-5">Cotações Moedas</h1>
@@ -18,9 +36,9 @@ function Display(props){
                             <img src={dolarIcon} width="26" height="26" alt="failDolar  " className="mr-1" />
                             <input
                                 type="number"
-                                inputMode="numeric"
-                                value={props.unitDol.toFixed(2)}
-                                step="0.1"
+                                pattern="[0-9]*[.,]?[0-9]+"
+                                value={roundedUnitDol}
+                                step="1"
                                 className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                                 id="exchanger"
                                 onChange={props.changingDol}
@@ -31,8 +49,8 @@ function Display(props){
                             <input
                                 type="number"
                                 pattern="[0-9]*[.,]?[0-9]+"
-                                value={(props.dolRate * props.unitDol).toFixed(2)}
-                                step="0.1"
+                                value={roundedBrlToDol}
+                                step="1"
                                 className="w-36 h-10 px-2 py-1 text-lg text-center border rounded-md"
                                 id="exchanged"
                                 onChange={props.changingBrlToDol}
@@ -49,8 +67,8 @@ function Display(props){
                             <input
                                 type="number"
                                 pattern="[0-9]*[.,]?[0-9]+"
-                                value={props.unitEur.toFixed(2)}
-                                step="0.01"
+                                value={roundedUnitEur}
+                                step="1"
                                 className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                                 id="exchanger"
                                 onChange={props.changingEur}
@@ -61,8 +79,8 @@ function Display(props){
                             <input
                                 type="number"
                                 pattern="[0-9]*[.,]?[0-9]+"
-                                value={(props.eurRate * props.unitEur).toFixed(2)}
-                                step="0.01"
+                                value={roundedBrltoEur}
+                                step="1"
                                 className="w-36 h-10 px-2 py-1 text-lg text-center border rounded-md"
                                 id="exchanged"
                                 onChange={props.changingBrlToEur}
@@ -79,8 +97,8 @@ function Display(props){
                             <input
                                 type="number"
                                 pattern="[0-9]*[.,]?[0-9]+"
-                                value={props.unitCad.toFixed(2)}
-                                step="0.01"
+                                value={props.unitCad}
+                                step="0.1"
                                 className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                                 id="exchanger"
                                 onChange={props.changingCad}
@@ -109,7 +127,7 @@ function Display(props){
                         <input
                             type="number"
                             pattern="[0-9]*[.,]?[0-9]+"
-                            value={props.unitBtc.toFixed(3)}
+                            value={props.unitBtc}
                             step="0.01"
                             className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                             id="exchanger"
@@ -139,7 +157,7 @@ function Display(props){
                         <input
                             type="number"
                             pattern="[0-9]*[.,]?[0-9]+"
-                            value={props.unitEth.toFixed(2)}
+                            value={props.unitEth}
                             step="0.01"
                             className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                             id="exchanger"
