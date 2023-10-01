@@ -8,22 +8,46 @@ import canadaIcon from '../icons/canada.png'
 
 function Display(props){
     const roundedUnitDol = Math.round(props.unitDol * 100) / 100
-    const roundedUnitEur = Math.round(props.unitEur * 100) / 100
-    //const roundedBrlToDol = Math.round(props.dolPrice * 100) / 100
     let roundedBrlToDol
-    let roundedBrltoEur
-
     if (typeof props.dolPrice === 'number') {
         roundedBrlToDol = Math.round(props.dolPrice * 100) / 100
     } else {
         roundedBrlToDol = Math.round(props.dolRate * 100) / 100
     }
-    console.log('this is a teste', props.eurPrice)
+
+    const roundedUnitEur = Math.round(props.unitEur * 100) / 100
+    let roundedBrltoEur
     if (typeof props.eurPrice === 'number') {
         roundedBrltoEur = Math.round(props.eurPrice * 100) / 100
     } else {
         roundedBrltoEur = Math.round(props.eurRate * 100) / 100
-    } 
+    }
+
+    const roundedUnitCad = Math.round(props.unitCad * 100) / 100
+    let roundedBrlToCad
+    if (typeof props.cadPrice === 'number') {
+        roundedBrlToCad = Math.round(props.cadPrice * 100) / 100
+    } else {
+        roundedBrlToCad = Math.round(props.cadRate * 100) / 100
+    }
+
+    const roundedUnitBtc = Math.round(props.unitBtc * 100) / 100
+    let roundedBrlToBtc
+    if (typeof props.btcPrice === 'number') {
+        roundedBrlToBtc = Math.round(props.btcPrice * 100) / 100
+    } else {
+        roundedBrlToBtc = Math.round(props.btcRate * 100) / 100
+    }
+
+    const roundedUnitEth = Math.round(props.unitEth * 100) / 100
+    let roundedBrlToEth
+    if (typeof props.ethPrice === 'number') {
+        roundedBrlToEth = Math.round(props.ethPrice * 100) / 100
+    } else {
+        roundedBrlToEth = Math.round(props.ethRate * 100) / 100
+    }  
+    //const roundedBrlToDol = Math.round(props.dolPrice * 100) / 100
+     
     return (
         <div className="pl-1 flex flex-col items-center">   
             <h1 className="text-red-200 font-bold text-3xl mt-2 mb-5">Cotações Moedas</h1>
@@ -97,7 +121,7 @@ function Display(props){
                             <input
                                 type="number"
                                 pattern="[0-9]*[.,]?[0-9]+"
-                                value={props.unitCad}
+                                value={roundedUnitCad}
                                 step="0.1"
                                 className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                                 id="exchanger"
@@ -109,7 +133,7 @@ function Display(props){
                             <input
                                 type="number"
                                 pattern="[0-9]*[.,]?[0-9]+"
-                                value={(props.cadRate * props.unitCad).toFixed(2)}
+                                value={roundedBrlToCad}
                                 step="0.01"
                                 className="w-36 h-10 px-2 py-1 text-lg text-center border rounded-md"
                                 id="exchanged"
@@ -127,7 +151,7 @@ function Display(props){
                         <input
                             type="number"
                             pattern="[0-9]*[.,]?[0-9]+"
-                            value={props.unitBtc}
+                            value={roundedUnitBtc}
                             step="0.01"
                             className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                             id="exchanger"
@@ -139,8 +163,8 @@ function Display(props){
                         <input
                             type="number"
                             pattern="[0-9]*[.,]?[0-9]+"
-                            value={(props.btcRate* props.unitBtc).toFixed(2)}
-                            step="50"
+                            value={roundedBrlToBtc}
+                            step="500"
                             className="w-36 h-10 px-2 py-1 text-lg text-center border rounded-md"
                             id="exchanged"
                             onChange={props.changingBrlToBtc}
@@ -157,8 +181,8 @@ function Display(props){
                         <input
                             type="number"
                             pattern="[0-9]*[.,]?[0-9]+"
-                            value={props.unitEth}
-                            step="0.01"
+                            value={roundedUnitEth}
+                            step="0.02"
                             className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                             id="exchanger"
                             onChange={props.changingEth}
@@ -169,8 +193,8 @@ function Display(props){
                         <input
                             type="number"
                             pattern="[0-9]*[.,]?[0-9]+"
-                            value={(props.ethRate * props.unitEth).toFixed(2)}
-                            step="10"
+                            step="250"
+                            value={roundedBrlToEth}
                             className="w-36 h-10 px-2 py-1 text-lg text-center border rounded-md"
                             id="exchanged"
                             onChange={props.changingBrlToEth}

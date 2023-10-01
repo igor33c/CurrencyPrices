@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import CurrencyRatesAPI from '../api/CurrencyRatesAPI'
 import Display from './DisplayCurrency'
 
@@ -6,13 +6,13 @@ function Currency(props) {
   const [unitDol, setUnitDol] = useState("1.00")
   const [dolPrice, setDolPrice] = useState()    
   const [unitEur, setUnitEur] = useState("1.00")
-  const [eurPrice, setEurPrice] = useState()
+  const [eurPrice, setEurPrice] = useState("1.00")
   const [unitCad, setUnitCad] = useState("1.00")
-  const [brlToCad, setBrlToCad] = useState()
+  const [cadPrice, setCadPrice] = useState()
   const [unitBtc, setUnitBtc] = useState("1.00")
-  const [brlToBtc, setBrlToBtc] =useState()
+  const [btcPrice, setBtcPrice] = useState()
   const [unitEth, setUnitEth] = useState("1.00")
-  const [brlToEth, setBrlToEth] = useState()
+  const [ethPrice, setEthPrice] = useState()
  
 
   const rates = CurrencyRatesAPI()///chamando api  
@@ -56,64 +56,60 @@ function Currency(props) {
   }
 
   function changingBrlToEur(event){
-    console.log('aqui')
     const inputValue = Number(event.target.value)      
     const newUnitEur = inputValue / eurRate
     setEurPrice(inputValue)
     setUnitEur(newUnitEur)
   }
-
-  const changingCad = (event) => {
-    const value = (Number(event.target.value))
-    setUnitCad(value)
-  }
-  const changingBrlToCad = (event) => {
-    const brToCad = (Number(event.target.value))
-    const newUnitCad = brToCad / cadRate
-    setBrlToCad(brToCad)
-    if (brToCad.toString().replace(/[^0-9]/g, "").length >= 3) {
-      setUnitCad(newUnitCad.toFixed(2)); // Arredonda o primeiro input para dois dígitos
-    } else {
-      setUnitCad(newUnitCad); // Caso contrário, mantém o valor não arredondado
-    }
+  function changingCad(event){
+    const inputValue = Number(event.target.value);
+    const roundedValue = Math.round(inputValue * 100) / 100; // Rounds to two decimal places
+    setUnitCad(roundedValue)
+    const roundedCad = Math.round((inputValue * cadRate)*100) / 100
+    console.log(roundedCad)
+    setCadPrice(roundedCad) 
   }
 
-  const changingBtc = (event) => {
-    const inputValue = event.target.value
-    const regex = /^\d+(\.\d{0,4})?$/
-    if (regex.test(inputValue)) {      
-      setUnitBtc(parseFloat(inputValue))
-    }
+  function changingBrlToCad(event){
+    
+    const inputValue = Number(event.target.value)      
+    const newUnitCad = inputValue / cadRate
+    setCadPrice(inputValue)
+    setUnitCad(newUnitCad)
+  }
+  
+
+  function changingBtc(event){
+    const inputValue = Number(event.target.value);
+    const roundedValue = Math.round(inputValue * 100) / 100; // Rounds to two decimal places
+    setUnitBtc(roundedValue)
+    const roundedBtc = Math.round((inputValue * btcRate)*100) / 100
+    console.log(roundedBtc)
+    setBtcPrice(roundedBtc) 
   }
 
-  const changingBrlToBtc = (event) => {
-    const brToBtc = Number(event.target.value)
-    const newUnitBtc = brToBtc / btcRate
-    setBrlToBtc(brToBtc)
-    if (unitBtc.toString().replace(/[^0-9]/g, "").length >= 4) {
-      setUnitBtc(newUnitBtc.toFixed(3)); // Arredonda o primeiro input para dois dígitos
-    } else {
-      setUnitBtc(newUnitBtc); // Caso contrário, mantém o valor não arredondado
-    }
+  function changingBrlToBtc(event){
+    
+    const inputValue = Number(event.target.value)      
+    const newUnitBtc = inputValue / btcRate
+    setBtcPrice(inputValue)
+    setUnitBtc(newUnitBtc)
   }
 
-  const changingEth = (event) => {
-    const inputValue = event.target.value
-    const regex = /^\d+(\.\d{0,4})?$/
-    if (regex.test(inputValue)) {      
-      setUnitEth(parseFloat(inputValue))
-    }
+  function changingEth(event){
+    const inputValue = Number(event.target.value);
+    const roundedValue = Math.round(inputValue * 100) / 100; // Rounds to two decimal places
+    setUnitEth(roundedValue)
+    const roundedEth = Math.round((inputValue * ethRate)*100) / 100
+    console.log(roundedEth)
+    setEthPrice(roundedEth) 
   }
 
-  const changingBrlToEth = (event) => {
-    const brToEth = Number(event.target.value)
-    const newUnitEth = brToEth / ethRate
-    setBrlToEth(brToEth)
-    if (unitEth.toString().replace(/[^0-9]/g, "").length >= 4) {
-      setUnitEth(newUnitEth.toFixed(3)); // Arredonda o primeiro input para dois dígitos
-    } else {
-      setUnitEth(newUnitEth); // Caso contrário, mantém o valor não arredondado
-    }
+  function changingBrlToEth(event){    
+    const inputValue = Number(event.target.value)      
+    const newUnitEth= inputValue / ethRate
+    setEthPrice(inputValue)
+    setUnitEth(newUnitEth)  
   }
    
   
@@ -121,7 +117,7 @@ function Currency(props) {
   console.log('etherem agora:', ethRate)
 
   //maior e menor preço do dia ou data de fechamento para euro e dolar, na sexta
-  {/*
+  /*
     const highBtcRate = rates['BTCBRL'].high 
     console.log('o maior preço do bitcoin hoje foi: R$', highBtcRate)
     const lowBtcRate = rates['BTCBRL'].low 
@@ -139,7 +135,7 @@ function Currency(props) {
     const lowEthRate = rates['ETHBRL'].low 
     console.log('o menor preço do ethereum hoje foi: R$', lowEthRate)
     */
-  }
+  
   
   return (
     /* passando dados para Display onde renderiza a tela para o usuario */
@@ -156,18 +152,24 @@ function Currency(props) {
       changingBrlToEur = {changingBrlToEur}
       eurPrice = {eurPrice}
 
+      cadRate = {cadRate}
+      unitCad = {unitCad}
+      changingCad = {changingCad}
+      changingBrlToCad = {changingBrlToCad}      
+      cadPrice = {cadPrice}
+
       btcRate = {btcRate}
       unitBtc = {unitBtc}
       changingBtc = {changingBtc}
       changingBrlToBtc = {changingBrlToBtc}
+      btcPrice = {btcPrice}
+
       ethRate = {ethRate}
       unitEth = {unitEth}
       changingEth = {changingEth}
       changingBrlToEth = {changingBrlToEth}
-      cadRate = {cadRate}
-      unitCad = {unitCad}
-      changingCad = {changingCad}
-      changingBrlToCad = {changingBrlToCad}
+      ethPrice = {ethPrice}
+     
     />          
   )
 }
