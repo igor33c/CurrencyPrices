@@ -66,6 +66,7 @@ function Display(props){
                                 className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                                 id="exchanger"
                                 onChange={props.changingDol}
+                                inputMode="decimal"
                             />
                         </div>
                         <div className="flex items-center">
