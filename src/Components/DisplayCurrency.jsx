@@ -60,7 +60,7 @@ function Display(props){
                             <img src={dolarIcon} width="26" height="26" alt="failDolar  " className="mr-1" />
                             <input
                                 type="number"
-                                pattern="[0-9]*[.,]?[0-9]+"
+                                pattern="^[0-9,\.]*$"
                                 value={roundedUnitDol}
                                 step="1"
                                 className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
@@ -89,10 +89,8 @@ function Display(props){
                         <div className="flex items-center mb-2">
                             <img src={euroIcon} width="26" height="26" alt="failEuro" className="mr-1" />
                             <input
-                                type="number"
-                                pattern="[0-9]*[.,]?[0-9]+"
+                                type="number" // Use text type instead of number
                                 value={roundedUnitEur}
-                                step="1"
                                 className="w-24 h-10 px-2 py-1 text-lg text-center border rounded-md mr-2"
                                 id="exchanger"
                                 onChange={props.changingEur}
